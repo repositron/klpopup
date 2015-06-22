@@ -14,9 +14,24 @@ module.exports = function(grunt) {
         },
         ts: {
             default: {
-                src: ["**/*.ts", "!node_modules/**/*.ts"]
+                src: ["typescript/*.ts", "!node_modules/**/*.ts"],
+                /*options: {
+                    target: "es6"
+                }*/
             }
 
+        },
+        copy: {
+            main: {
+                files: [
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: ['typescript/*.ts', 'typescript/*.map', 'html/*'],
+                        dest: 'bin/'
+                    },
+                ]
+            },
         },
         tsd: {
             refresh: {
@@ -36,6 +51,15 @@ module.exports = function(grunt) {
                     }
                 }
             }
+        },
+        run: {
+            dev : {
+                cmd: 'google-chrome',
+                args: [
+                    '--load-extension=bin/',
+                    'test/test1.html'
+                ]
+            }
         }
     });
 
@@ -44,6 +68,11 @@ module.exports = function(grunt) {
 
     // Default task(s).
     grunt.loadNpmTasks('grunt-tsd');
-    grunt.registerTask('default', ["ts"]);
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-run');
+    grunt.registerTask('default', ["ts", "copy:main"]);
+    grunt.registerTask('rundev', ["run:dev"]);
+
+
 
 };
