@@ -6,9 +6,9 @@ class Messaging {
     //[   dispatcher_: string] : string;//  = new Map<string, string>();
     // x : Map<string, string>;
     //dispatcherxx_ : Map<String, Function>;
-    dispatcher_ : Array<Function>;
+    dispatcher_ : Array<Function> = [];
     constructor() {
-        this.dispatcher_ = new Map<String, Function>();
+        //this.dispatcher_ = new Map<String, Function>();
 
     }
 
@@ -19,7 +19,7 @@ class Messaging {
             console.log("what is OnReceive " + this.OnReceive);
             port.onMessage.addListener((msg:any) => {
                 console.log("OnReceive " + msg.action);
-                var action = this.dispatcher_.get(msg.action);
+                var action = this.dispatcher_[msg.action];
                 console.log("disp " + action);
                 if (action != undefined) {
                     action();
@@ -32,7 +32,7 @@ class Messaging {
 
     OnReceive(msg : any):void {
         console.log("OnReceive " + msg.action);
-        var action = this.dispatcher_.get(msg.action);
+        var action = this.dispatcher_[msg.action];
         if (action != undefined) {
             action.call(null);
             //action.caller.call();
@@ -45,7 +45,7 @@ class Messaging {
 
     Subscribe(name:string, callback: Function):void {
         console.log("Messaging.prototype.Subscribe");
-        this.dispatcher_.set(name, callback);
+        this.dispatcher_[name] = callback;
     }
 }
 
