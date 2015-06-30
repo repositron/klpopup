@@ -14,10 +14,11 @@ module.exports = function(grunt) {
         },
         ts: {
             default: {
-                src: ["typescript/*.ts", "!node_modules/**/*.ts"],
-                /*options: {
-                    target: "es6"
-                }*/
+                files: [{src: ["typescript/eventpage.ts"], dest: "bin/"},
+                        { src: ['typescript/tabpage.ts', 'typescript/popup.ts', 'messaging.ts' ], dest: "bin/tabpage.js"}],
+                options: {
+                    target: "es5"
+                }
             }
 
         },

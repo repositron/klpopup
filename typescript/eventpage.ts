@@ -3,28 +3,25 @@
 
 module EventPage {
 
-    enum VerbType { InitDone, Listening, Other};
-
-    export class MessageType {
-
-        verb: string;
-    }
-
     export class EventPage {
-        portConnect_ : chrome.runtime.Port = null;
-        tab_ : chrome.tabs.Tab = null;
-        enabled_ : boolean = false;
+        private portConnect_ : chrome.runtime.Port = null;
+        private tab_ : chrome.tabs.Tab = null;
+        private enabled_ : boolean = false;
 
         constructor() {
-            chrome.browserAction.onClicked.addListener(this.OnClick);
+            console.log("Eventpage()")
         }
-
-        OnClick(tab : chrome.tabs.Tab) : void {
+        public CreateListener() : void {
+            console.log("CreateListener" + this.OnClick);
+            chrome.browserAction.onClicked.addListener((tab : chrome.tabs.Tab) => this.OnClick(tab));
+        }
+        private OnClick(tab : chrome.tabs.Tab) : void {
             this.HandleActionButton(tab);
-            console.log('Tab' + tab.url + tab.id + '!!');
+            console.log('Tab: ' + tab.url + tab.id + '!!');
         }
 
         HandleActionButton(tab: chrome.tabs.Tab) : void {
+            console.log("HandleActionButton");
             if (this.enabled_) {
                 chrome.browserAction.setBadgeText({text: 'off'});
                 this.portConnect_.postMessage({action: "Clr"});
@@ -40,7 +37,7 @@ module EventPage {
                     console.log("connect to tab: " + this.tab_.id)
 
                     chrome.browserAction.setBadgeText({text: 'on'});
-                    chrome.tabs.executeScript(tab.id, {file: "tabpage.js"}, this.OnExecuteScriptComplete);
+                    chrome.tabs.executeScript(tab.id, {file: "kl.js"}, (result) => this.OnExecuteScriptComplete(result));
                 }
                 catch (err) {
                     window.alert(err)
@@ -51,6 +48,7 @@ module EventPage {
 
 
         OnExecuteScriptComplete(result : any[]) : void {
+            console.log('OnExecuteScriptComplete' + result);
             this.portConnect_ = chrome.tabs.connect(this.tab_.id, {name: "klmessenger"});
             this.portConnect_.onMessage.addListener((msg : any) => {
                 console.log("msg received in eventpage " + msg.action);
@@ -67,11 +65,11 @@ module EventPage {
                 }
 
             });
-        console.log("OnExecuteScriptComplete");
-        console.log(result);
-
-    }
+            console.log("OnExecuteScriptComplete");
+            console.log(result);
+        }
     }
 }
 
 var eventPage = new EventPage.EventPage();
+eventPage.CreateListener();

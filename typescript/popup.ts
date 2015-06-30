@@ -8,7 +8,7 @@ module Popup {
         klcss_:Element;
         tab_:chrome.tabs.Tab;
 
-        constructor() {
+        constructor(runAfter : Function) {
 
         }
 
