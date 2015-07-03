@@ -1,5 +1,7 @@
 #klstyle {
     position: fixed;
+    top:5px;
+    left:10px;
     font-family: Arial, Helvetica, sans-serif;
     background: red;
     color: blue;
@@ -7,4 +9,6 @@
     opacity:0.7;
     transition: opacity 400ms ease-in;
     pointer-events: none;
+    border:2px solid black;
+    padding:4px;
 }

@@ -21,7 +21,7 @@
   
   "web_accessible_resources": [
     "data/JMdict.txt",
-    "tabpage.js",
+    "kl.js",
     "klstyle.css"
   ] 
 }

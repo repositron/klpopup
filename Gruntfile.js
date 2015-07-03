@@ -15,9 +15,10 @@ module.exports = function(grunt) {
         ts: {
             default: {
                 files: [{src: ["typescript/eventpage.ts"], dest: "bin/"},
-                        { src: ['typescript/tabpage.ts', 'typescript/popup.ts', 'messaging.ts' ], dest: "bin/tabpage.js"}],
+                        { src: ['typescript/tabpage.ts', 'typescript/popup.ts', 'typescript/messaging.ts', 'typescript/mousecap.ts', 'typescript/extractwords.ts' ], dest: "bin/kl.js"}],
                 options: {
-                    target: "es5"
+                    target: "es5",
+                    fast: 'never'
                 }
             }
 
@@ -61,18 +62,21 @@ module.exports = function(grunt) {
                     'test/test1.html'
                 ]
             }
+        },
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js'
+            }
         }
     });
 
-    // Load the plugin that provides the "uglify" task.
     grunt.loadNpmTasks('grunt-ts');
-
-    // Default task(s).
     grunt.loadNpmTasks('grunt-tsd');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-run');
     grunt.registerTask('default', ["ts", "copy:main"]);
     grunt.registerTask('rundev', ["run:dev"]);
+    grunt.loadNpmTasks('grunt-karma');
 
 
 

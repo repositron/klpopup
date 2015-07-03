@@ -2,6 +2,7 @@
 /// <reference path="messaging.ts"/>
 /// <reference path="popup.ts"/>
 /// <reference path="mousecap.ts"/>
+/// <reference path="extractwords.ts"/>
 'use strict';
 console.log("tabpage.ts starting")
 var messaging = new Messaging();
@@ -20,5 +21,5 @@ messaging.Subscribe("ReceivedInitDone", () => {
      this.tab_ = tab;*/
 });
 
-var mouse = new mousecap.MouseFnImpl();
+var mouse = new mousecap.MouseFnImpl(new ExtractWords.ExtractWords());
 mousecap.CaptureMouse(mouse);

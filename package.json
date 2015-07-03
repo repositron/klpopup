@@ -18,9 +18,16 @@
     "grunt-contrib-copy": "^0.8.0",
     "grunt-contrib-jshint": "^0.11.2",
     "grunt-copy": "^0.1.0",
+    "grunt-karma": "^0.11.2",
     "grunt-run": "^0.3.0",
     "grunt-ts": "^4.2.0-beta.1",
     "grunt-tsd": "^0.2.0-beta.1",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.12.37",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-jasmine": "^0.3.6",
+    "karma-requirejs": "^0.2.2",
+    "requirejs": "^2.1.18",
     "ts": "0.0.0"
   }
 }
