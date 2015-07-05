@@ -5,17 +5,18 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: '.',
 
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine', 'requirejs'],
+    frameworks: ['jasmine', 'require'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      {pattern: 'typescript/*.ts', included: false}
+      {pattern: 'test/unit/*.js', included: true, watched: true},
+      {pattern: 'typescript/*.js', included: false}
     ],
 
 
@@ -27,13 +28,32 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'typescript/*.ts': ['typescript'],
+      'test/unit/*.ts' : ['typescript']
     },
-
+    typescriptPreprocessor: {
+      // options passed to the typescript compiler
+      options: {
+        sourceMap: true, // (optional) Generates corresponding .map file.
+        target: 'ES5', // (optional) Specify ECMAScript target version: 'ES3' (default), or 'ES5'
+        suppressImplicitAnyIndexErrors: 'true',
+        noResolve: false, // (optional) Skip resolution and preprocessing.
+        removeComments: true // (optional) Do not emit comments to output.
+      },
+      // extra typing definitions to pass to the compiler (globs allowed)
+      typings: [
+        'typings/tsd.d.ts'
+      ],
+      // transforming the filenames
+      transformPath: function(path) {
+        return path.replace(/\.ts$/, '.js');
+      }
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'dots'],
 
 
     // web server port
@@ -46,7 +66,7 @@ module.exports = function(config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_DEBUG,
 
 
     // enable / disable watching file and executing tests whenever any file changes

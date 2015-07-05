@@ -18,7 +18,9 @@ module.exports = function(grunt) {
                         { src: ['typescript/tabpage.ts', 'typescript/popup.ts', 'typescript/messaging.ts', 'typescript/mousecap.ts', 'typescript/extractwords.ts' ], dest: "bin/kl.js"}],
                 options: {
                     target: "es5",
-                    fast: 'never'
+                    fast: 'never',
+                    noImplicitAny: 'true',
+                    suppressImplicitAnyIndexErrors: 'true',
                 }
             }
 

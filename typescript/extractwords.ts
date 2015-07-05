@@ -76,13 +76,13 @@ module ExtractWords {
     }
 
     // Barrier nodes are BR, DIV, P, PRE, TD, TR, ...
-    function isBarrierNode(node): boolean {
+    function isBarrierNode(node: Node): boolean {
         return node ? /^(BR|DIV|P|PRE|TD|TR|TABLE)$/i.test(node.nodeName) : true;
     }
 
     // Try to find the next adjacent node
     function getNextNode(node:Node):Node {
-        var n = null;
+        var n: Node = null;
 
         // Does this node have a sibling?
         if (node.nextSibling) {
@@ -97,7 +97,7 @@ module ExtractWords {
 
     // Try to find the prev adjacent node
     function getPrevNode(node:Node):Node {
-        var n = null;
+        var n: Node = null;
 
         // Does this node have a sibling?
         if (node.previousSibling) {
@@ -111,7 +111,7 @@ module ExtractWords {
     }
 
     // REF: http://stackoverflow.com/questions/3127369/how-to-get-selected-textnode-in-contenteditable-div-in-ie
-    function getChildIndex(node): number {
+    function getChildIndex(node: Node): number {
         var i = 0;
         while ((node = node.previousSibling)) {
             i++;
