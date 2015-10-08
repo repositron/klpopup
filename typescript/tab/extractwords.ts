@@ -1,9 +1,7 @@
 'use strict';
-
-module ExtractWords {
-
+module ExtractWordsMod {
     export class ExtractWords {
-        public Extract(textNode:Node, offset: number):string {
+        public Extract(textNode:Node, offset:number):string {
             // Only act on text nodes
             if (!textNode || textNode.nodeType !== Node.TEXT_NODE) {
                 return "";
@@ -71,18 +69,18 @@ module ExtractWords {
             return word;
         }
     }
-    function isWhiteSpace(s: string) : boolean {
+    export function isWhiteSpace(s:string):boolean {
         return /[ \f\n\r\t\v\u00A0\u2028\u2029]/.test(s);
     }
 
     // Barrier nodes are BR, DIV, P, PRE, TD, TR, ...
-    function isBarrierNode(node: Node): boolean {
+    function isBarrierNode(node:Node):boolean {
         return node ? /^(BR|DIV|P|PRE|TD|TR|TABLE)$/i.test(node.nodeName) : true;
     }
 
     // Try to find the next adjacent node
     function getNextNode(node:Node):Node {
-        var n: Node = null;
+        var n:Node = null;
 
         // Does this node have a sibling?
         if (node.nextSibling) {
@@ -97,7 +95,7 @@ module ExtractWords {
 
     // Try to find the prev adjacent node
     function getPrevNode(node:Node):Node {
-        var n: Node = null;
+        var n:Node = null;
 
         // Does this node have a sibling?
         if (node.previousSibling) {
@@ -111,7 +109,7 @@ module ExtractWords {
     }
 
     // REF: http://stackoverflow.com/questions/3127369/how-to-get-selected-textnode-in-contenteditable-div-in-ie
-    function getChildIndex(node: Node): number {
+    function getChildIndex(node:Node):number {
         var i = 0;
         while ((node = node.previousSibling)) {
             i++;

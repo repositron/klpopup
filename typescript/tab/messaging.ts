@@ -1,4 +1,4 @@
-/// <reference path="../typings/chrome/chrome.d.ts"/>
+/// <reference path="../../typings/chrome/chrome.d.ts"/>
 'use strict';
 
 class Messaging {

@@ -1,4 +1,4 @@
-/// <reference path="../typings/chrome/chrome.d.ts"/>
+/// <reference path="../../typings/chrome/chrome.d.ts"/>
 /// <reference path="tabpage.ts" />
 'use strict';
 

@@ -1,4 +1,4 @@
-/// <reference path="../typings/chrome/chrome.d.ts"/>
+/// <reference path="../../typings/chrome/chrome.d.ts"/>
 /// <reference path="extractwords.ts"/>
 'use strict';
 
@@ -16,9 +16,9 @@ module mousecap {
 
     export class MouseFnImpl implements MouseFnInterface
     {
-        private extractWords_: ExtractWords.ExtractWords;
+        private extractWords_: ExtractWordsMod.ExtractWords;
 
-        constructor (extractWords: ExtractWords.ExtractWords) {
+        constructor (extractWords: ExtractWordsMod.ExtractWords) {
             this.extractWords_ = extractWords;
         }
         public OnMouse(ev: MouseEvent) : void

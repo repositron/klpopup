@@ -1,4 +1,4 @@
-/// <reference path="../typings/chrome/chrome.d.ts"/>
+/// <reference path="../../typings/chrome/chrome.d.ts"/>
 /// <reference path="messaging.ts"/>
 /// <reference path="popup.ts"/>
 /// <reference path="mousecap.ts"/>
@@ -21,5 +21,5 @@ messaging.Subscribe("ReceivedInitDone", () => {
      this.tab_ = tab;*/
 });
 
-var mouse = new mousecap.MouseFnImpl(new ExtractWords.ExtractWords());
+var mouse = new mousecap.MouseFnImpl(new ExtractWordsMod.ExtractWords());
 mousecap.CaptureMouse(mouse);

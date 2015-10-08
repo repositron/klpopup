@@ -15,7 +15,7 @@ module.exports = function(grunt) {
         ts: {
             default: {
                 files: [{src: ["typescript/eventpage.ts"], dest: "bin/"},
-                        { src: ['typescript/tabpage.ts', 'typescript/popup.ts', 'typescript/messaging.ts', 'typescript/mousecap.ts', 'typescript/extractwords.ts' ], dest: "bin/kl.js"}],
+                        { src: ['typescript/tab/tabpage.ts', 'typescript/tab/popup.ts', 'typescript/tab/messaging.ts', 'typescript/tab/mousecap.ts', 'typescript/tab/extractwords.ts' ], dest: "bin/kl.js"}],
                 options: {
                     target: "es5",
                     fast: 'never',
