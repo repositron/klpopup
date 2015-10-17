@@ -16,6 +16,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
         {pattern: 'typescript/tab/extractwords.ts', included: true, watched: true},
+        {pattern: 'typescript/JmDict/*.ts', included: true, watched: true},
         {pattern: 'test/unit/*.js', included: true, watched: true},
     ],
 
@@ -28,7 +29,8 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'typescript/tab/extractwords.ts': ['typescript'],
+      'typescript/**/*.ts' : ['typescript'],
+      //'typescript/JmDict/*.ts' : ['typescript'],
       'test/unit/*.ts' : ['typescript']
     },
     typescriptPreprocessor: {
@@ -53,7 +55,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'dots'],
+    reporters: ['dots'],
 
 
     // web server port
