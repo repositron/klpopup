@@ -1,7 +1,7 @@
 'use strict';
 module ExtractWordsMod {
     export class ExtractWords {
-        public Extract(textNode:Node, offset:number):string {
+        public Extract(textNode:Node, offset:number) : string {
             // Only act on text nodes
             if (!textNode || textNode.nodeType !== Node.TEXT_NODE) {
                 return "";
@@ -69,7 +69,7 @@ module ExtractWordsMod {
             return word;
         }
     }
-    export function isWhiteSpace(s:string):boolean {
+    export function isWhiteSpace(s: string) : boolean {
         return /[ \f\n\r\t\v\u00A0\u2028\u2029]/.test(s);
     }
 

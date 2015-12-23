@@ -15,7 +15,7 @@ module JmDict {
         public XmlToEntry(xmlEntry : string) : string {
             var root : Document = ( new DOMParser() ).parseFromString(xmlEntry, "text/xml");
             var keb = root.getElementsByTagName('keb');
-            var htmlStr = '<div id="keb">' + keb[0].childNodes[0].nodeValue +  '</div>';
+            var htmlStr = '<div class="keb">' + keb[0].childNodes[0].nodeValue +  '</div>';
             return htmlStr;
         }
     }
