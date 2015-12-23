@@ -8,13 +8,28 @@ describe("xml entry", function()  {
     it("has a main entry word", () =>  {
         var parser = new JmDict.Parser();
         var html = parser.XmlToEntry(Testdata.entryXml);
-        var dom = Utility.HTMLParser(html);
-        expect(dom.getElementById('keb')).toEqual('説明')
+        var dom = Utility.HtmlToDom(html);
+        //console.debug(dom);
+        var keb = dom.firstChild.nodeValue;
+        /*
+        var elements : NodeListOf<HTMLDivElement> = dom.getElementsByTagName('div');
+        var element = elements[0];
+*/
+        expect(keb).toEqual('説明');
         //expect(parser.XmlToEntry(Testdata.entryXml));
     })
+
+
 });
 
 class Utility {
+    public static HtmlToDom(htmlStr : string) : Node {
+        var div = document.createElement('div');
+        div.innerHTML = htmlStr;
+        var elements = div.firstChild;
+        return elements;
+    }
+
     public static HTMLParser(aHTMLString : string) : Document {
         var html = document.implementation.createDocument("http://www.w3.org/1999/xhtml", "html", null);
         var body = document.createElementNS("http://www.w3.org/1999/xhtml", "body");

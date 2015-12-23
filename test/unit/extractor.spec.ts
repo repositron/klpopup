@@ -1,5 +1,4 @@
-/// <reference path="../../typings/jasmine/jasmine.d.ts" />
-/// <reference path="../../typescript/tab/extractwords.ts"/>
+/// <reference path="../../typings/jquery/jquery.d.ts"/>
 'use strict';
 console.log("xxx1");
 describe("white space", function() {
@@ -11,3 +10,7 @@ describe("white space", function() {
         expect(ExtractWordsMod.isWhiteSpace("b")).toBeFalsy();
     })
 });
+
+var htmlText = "<P>ラーメンを食べた</P><P>日本語</P>";
+var html = jQuery.parseHTML(htmlText);
+
