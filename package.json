@@ -24,6 +24,7 @@
     "grunt-ts": "*",
     "grunt-tsd": "*",
     "jasmine-core": "*",
+    "jquery": "^2.1.4",
     "karma": "*",
     "karma-chrome-launcher": "*",
     "karma-jasmine": "^0.3.6",
